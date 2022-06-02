@@ -1,0 +1,255 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+:root {
+    --w: calc(70vw/5);
+    --h: calc(90vh/2.3);
+}
+
+#head-page {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 1rem;
+}
+
+    #actions {
+        position: relative;
+        width: 155px;
+        height: 55px;
+        margin: 20px;
+    }
+
+        #actions button {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom:1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            color: rgb(255, 255, 255);
+            z-index: 1;
+            font-size: 400;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-decoration: none;
+            overflow: hidden;
+            transition: 0.5s;
+            backdrop-filter: blur(15px);
+        }
+
+            #actions:hover button {
+                letter-spacing: 3px;
+            }
+
+                #actions button::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 50%;
+                    height: 100%;
+                    background: linear-gradient(to left, rgba(255,255,255,0.15),
+                    transparent);
+                    transform: skewX(45deg) translateX(0);
+                    transition: 0.5s;
+                }
+
+                    #actions:hover button::before {
+                        transform: skewX(45deg) translateX(200%);
+                    }
+
+        #actions::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -5px;
+            width: 30px;
+            height: 10px;
+            background: rgb(43, 210, 255);
+            border-radius: 10px;
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+
+            #actions:hover::before {
+                bottom: 0;
+                height: 50%;
+                width: 80%;
+                border-radius: 30px;
+                transition-delay: 0.5s;
+            }
+
+        #actions::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -5px;
+            width:30px;
+            height:10px;
+            background: rgb(43, 210, 255);
+            border-radius: 10px;
+            transition: 0.5s;
+            transition-delay: 0s;
+        }
+
+            #actions:hover::after {
+                top: 0;
+                height: 50%;
+                width: 80%;
+                border-radius: 30px;
+                transition-delay: 0.5s;
+            }
+
+        #actions:nth-child(1)::before,
+        #actions:nth-child(1)::after {
+            background: rgb(43, 210, 255);
+            box-shadow: 0 0 5px rgb(43, 210, 255),
+            0 0 15px rgb(43, 210, 255),
+            0 0 30px rgb(43, 210, 255),
+            0 0 60px rgb(43, 210, 255);
+        }
+
+    #time {
+        width: 15vw;
+        height: 6vh;
+        font-size: 30px;
+        text-align: center;
+        color: rgb(255, 255, 255);
+    }
+
+#container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: rgba(80, 80, 80, 0.5);
+    flex-wrap: wrap;
+}
+
+    .card-area {
+        background-color: transparent;
+        margin: 10px;
+        perspective: 1000px;
+        position: static;
+        flex-wrap: wrap;
+    }
+
+        #container .card-area .card {
+            position: relative;
+            width: var(--w);
+            height: var(--h);
+            text-align: center;
+            transition: all 1s ease;
+            transform-style: preserve-3d;
+            animation: init 2s ease-in-out;
+        }
+
+        #container .card-area .card .front, .back {
+            position: absolute;
+            width: var(--w);
+            height: var(--h);
+            backface-visibility: hidden;
+        }
+
+            #container .card-area .card .back {
+                background-color: rgb(255, 255, 255);
+            }
+
+                #container .card-area .card .back > img{
+                    width: 100%;
+                    height: 100%;    
+                }
+
+            #container .card-area .card .front {
+                background-color: black;
+                color: rgb(255, 255, 255);
+                transform: rotateY(180deg);
+            }
+
+                #container .card-area .card .front .name-card {
+                    font-size: 20px;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                    #container .card-area .card .front .name-card > h1{
+                        margin: 1rem;
+                        font-size: 30px;
+                    }
+
+                #container .card-area .card .front .img-card {
+                    border: dashed 3px rgb(128, 128, 128);
+                    padding-top: 15px;
+                    margin: auto;
+                    width: 80%;
+                    height: 50%;
+                }
+
+                    #container .card-area .card .front .img-card > img {
+                        width: 90%;
+                        height: 90%;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+@keyframes init {
+    20%, 90% {
+        transform: rotateY(180deg);
+    } 0%, 100% {
+        transform: rotateY(0deg);
+    }
+}
+
+#container-tab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    background-color: rgba(80, 80, 80, 0.5);
+    flex-wrap: wrap;
+}
+
+    #container-tab #title-tab{
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+        #container-tab #title-tab > h1 {
+            color: rgb(100, 255, 255);
+            padding: 0;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+    #container-tab #body-tab {
+        width: 50%;
+        color: rgb(255, 255, 255);
+        padding: 1rem;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        #container-tab #body-tab > span {
+            font-size: 30px;
+        }
+
+#foot-page {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
